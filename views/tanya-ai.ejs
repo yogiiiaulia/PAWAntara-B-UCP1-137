@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title><%= title %></title>
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+  <%- include('partials/navbar') %>
+
+  <main class="main-content">
+    <div class="container">
+      <h1>🤖 Tanya AI</h1>
+      <p class="text-muted">Tanyakan apa saja tentang produk, stok, atau harga!</p>
+
+      <section class="chat-section" aria-label="Chat dengan AI">
+        <div class="chat-container">
+          <div class="chat-messages" id="chatMessages" role="log" aria-live="polite">
+            <div class="message bot-message">
+              <div class="message-content">
+                <span class="message-avatar">🤖</span>
+                <div class="message-bubble">
+                  Halo! 👋 Saya adalah AI dari Toko Sembako Ariesta. 
+                  Silakan tanyakan tentang produk, stok, atau harga!
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <form class="chat-form" id="chatForm" aria-label="Form tanya AI">
+            <div class="form-group">
+              <label for="question" class="visually-hidden">Pertanyaan Anda</label>
+              <input 
+                type="text" 
+                id="question" 
+                name="question" 
+                placeholder="Tanyakan sesuatu..." 
+                required
+                aria-required="true"
+                aria-label="Tulis pertanyaan Anda"
+              >
+              <button type="submit" class="btn btn-primary" id="sendBtn">
+                <span class="btn-icon">✉️</span> Kirim
+              </button>
+            </div>
+            <small class="form-hint">Contoh: "Harga beras 5kg berapa?"</small>
+          </form>
+        </div>
+      </section>
+    </div>
+  </main>
+
+  <%- include('partials/footer') %>
+  <script src="/js/script.js"></script>
+</body>
+</html>
