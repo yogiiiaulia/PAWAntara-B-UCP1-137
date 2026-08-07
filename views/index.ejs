@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title><%= title %></title>
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+  <%- include('partials/navbar') %>
+
+  <main class="main-content">
+    <section class="hero" aria-labelledby="hero-title">
+      <div class="container">
+        <div class="hero-content">
+          <h1 id="hero-title">Selamat Datang di Toko Sembako Ariesta</h1>
+          <p class="hero-subtitle">
+            Temukan kebutuhan pokok rumah tangga dengan harga terbaik dan kualitas terjamin.
+          </p>
+          <div class="hero-buttons">
+            <a href="/produk" class="btn btn-primary">Lihat Produk</a>
+            <a href="/tanya-ai" class="btn btn-secondary">Tanya AI</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="product-preview" aria-labelledby="preview-title">
+      <div class="container">
+        <h2 id="preview-title">🔥 Produk Favorit</h2>
+        <div class="product-grid">
+          <% products.forEach(product => { %>
+            <article class="product-card">
+              <div class="product-card-content">
+                <h3><%= product.name %></h3>
+                <div class="product-meta">
+                  <span class="product-price">Rp <%= product.price.toLocaleString() %></span>
+                  <span class="product-stock">Stok: <%= product.stock %> <%= product.unit %></span>
+                </div>
+                <a href="/produk/<%= product.id %>" class="btn btn-detail">Lihat Detail</a>
+              </div>
+            </article>
+          <% }) %>
+        </div>
+        <div class="text-center">
+          <a href="/produk" class="btn btn-primary">Lihat Semua Produk →</a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <%- include('partials/footer') %>
+  <script src="/js/script.js"></script>
+</body>
+</html>
