@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title><%= title %></title>
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+  <%- include('partials/navbar') %>
+
+  <main class="main-content">
+    <div class="container">
+      <h1>📦 Daftar Produk</h1>
+      <p class="text-muted">Menampilkan <%= products.length %> dari <%= allProducts.length %> produk</p>
+
+      <aside class="filter-section" aria-label="Filter produk">
+        <form action="/produk" method="GET" class="filter-form">
+          <div class="filter-group">
+            <label for="kategori">Kategori:</label>
+            <select name="kategori" id="kategori">
+              <option value="">Semua</option>
+              <option value="sembako" <%= query.kategori === 'sembako' ? 'selected' : '' %>>Sembako</option>
+              <option value="makanan" <%= query.kategori === 'makanan' ? 'selected' : '' %>>Makanan</option>
+              <option value="minuman" <%= query.kategori === 'minuman' ? 'selected' : '' %>>Minuman</option>
+            </select>
+          </div>
+          <div class="filter-group">
+            <label for="search">Cari Produk:</label>
+            <input 
+              type="search" 
+              id="search" 
+              name="search" 
+              placeholder="Cari produk..." 
+              value="<%= query.search || '' %>"
+              aria-label="Cari produk"
+            >
+          </div>
+          <button type="submit" class="btn btn-primary">Filter</button>
+          <a href="/produk" class="btn btn-secondary">Reset</a>
+        </form>
+      </aside>
+
+      <% if (products.length > 0) { %>
+        <div class="product-grid">
+          <% products.forEach(product => { %>
+            <article class="product-card">
+              <div class="product-card-content">
+                <span class="product-category"><%= product.category %></span>
+                <h3><%= product.name %></h3>
+                <div class="product-meta">
+                  <span class="product-price">Rp <%= product.price.toLocaleString() %></span>
+                  <span class="product-stock">Stok: <%= product.stock %> <%= product.unit %></span>
+                </div>
+                <a href="/produk/<%= product.id %>" class="btn btn-detail">Lihat Detail</a>
+              </div>
+            </article>
+          <% }) %>
+        </div>
+      <% } else { %>
+        <div class="empty-state">
+          <p>😔 Tidak ada produk yang sesuai dengan filter Anda.</p>
+          <a href="/produk" class="btn btn-primary">Lihat Semua Produk</a>
+        </div>
+      <% } %>
+    </div>
+  </main>
+
+  <%- include('partials/footer') %>
+  <script src="/js/script.js"></script>
+</body>
+</html>
