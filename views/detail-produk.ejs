@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title><%= title %></title>
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+  <%- include('partials/navbar') %>
+
+  <main class="main-content">
+    <div class="container">
+      <nav aria-label="Breadcrumb">
+        <ol class="breadcrumb">
+          <li><a href="/">Beranda</a></li>
+          <li><a href="/produk">Produk</a></li>
+          <li aria-current="page"><%= product.name %></li>
+        </ol>
+      </nav>
+
+      <article class="product-detail">
+        <div class="product-detail-content">
+          <header>
+            <h1><%= product.name %></h1>
+            <span class="product-category-badge"><%= product.category %></span>
+          </header>
+
+          <div class="product-detail-info">
+            <div class="info-group">
+              <span class="label">Harga</span>
+              <span class="value price">Rp <%= product.price.toLocaleString() %> / <%= product.unit %></span>
+            </div>
+            <div class="info-group">
+              <span class="label">Stok Tersedia</span>
+              <span class="value stock"><%= product.stock %> <%= product.unit %></span>
+            </div>
+            <div class="info-group">
+              <span class="label">Deskripsi</span>
+              <p class="value description"><%= product.description %></p>
+            </div>
+          </div>
+
+          <div class="product-detail-actions">
+            <a href="/produk" class="btn btn-secondary">← Kembali ke Daftar Produk</a>
+            <a href="/tanya-ai" class="btn btn-primary">🤖 Tanya AI</a>
+          </div>
+        </div>
+      </article>
+    </div>
+  </main>
+
+  <%- include('partials/footer') %>
+  <script src="/js/script.js"></script>
+</body>
+</html>
