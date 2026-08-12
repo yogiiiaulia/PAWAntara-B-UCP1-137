@@ -5,11 +5,15 @@ const { isAuthenticated } = require('../middleware/auth');
 
 let nextId = products.length + 1;
 
-// GET /api/products - publik (sudah ada di apiRoutes.js)
-// GET /api/products/:id - publik (sudah ada di apiRoutes.js)
+// ============================================
+// POST /api/products - Tambah produk (wajib login)
+// ============================================
+// ✅ BENAR: path-nya '/products' (tanpa /api)
+router.post('/products', isAuthenticated, (req, res) => {
+  console.log('🔥 POST /api/products dipanggil!');
+  console.log('📦 Body:', req.body);
+  console.log('👤 User:', req.session.user);
 
-// FR-09: POST /api/products - Tambah produk (wajib login)
-router.post('/api/products', isAuthenticated, (req, res) => {
   const { name, category, price, stock, unit, description } = req.body;
 
   if (!name || !price || !stock) {
@@ -38,8 +42,11 @@ router.post('/api/products', isAuthenticated, (req, res) => {
   });
 });
 
-// FR-09: PUT /api/products/:id - Update produk (wajib login)
-router.put('/api/products/:id', isAuthenticated, (req, res) => {
+// ============================================
+// PUT /api/products/:id - Update produk (wajib login)
+// ============================================
+// ✅ BENAR: path-nya '/products/:id' (tanpa /api)
+router.put('/products/:id', isAuthenticated, (req, res) => {
   const id = parseInt(req.params.id);
   const product = products.find(p => p.id === id);
 
@@ -66,8 +73,11 @@ router.put('/api/products/:id', isAuthenticated, (req, res) => {
   });
 });
 
-// FR-09: DELETE /api/products/:id - Hapus produk (wajib login)
-router.delete('/api/products/:id', isAuthenticated, (req, res) => {
+// ============================================
+// DELETE /api/products/:id - Hapus produk (wajib login)
+// ============================================
+// ✅ BENAR: path-nya '/products/:id' (tanpa /api)
+router.delete('/products/:id', isAuthenticated, (req, res) => {
   const id = parseInt(req.params.id);
   const index = products.findIndex(p => p.id === id);
 
