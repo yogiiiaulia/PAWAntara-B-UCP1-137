@@ -10,32 +10,54 @@
   <%- include('partials/navbar') %>
 
   <main class="main-content">
+    <!-- Hero Section -->
     <section class="hero" aria-labelledby="hero-title">
       <div class="container">
         <div class="hero-content">
-          <h1 id="hero-title">Selamat Datang di Toko Sembako Ariesta</h1>
+          <div class="hero-badge">🏡 Koperasi Desa</div>
+          <h1 id="hero-title">Selamat Datang di Kopdes Ariesta</h1>
           <p class="hero-subtitle">
-            Temukan kebutuhan pokok rumah tangga dengan harga terbaik dan kualitas terjamin.
+            Menyediakan hasil bumi dan produk olahan terbaik dari warga desa, 
+            untuk kesejahteraan bersama.
           </p>
+          <div class="hero-stats">
+            <div class="stat-item">
+              <span class="stat-number">8+</span>
+              <span class="stat-label">Produk Desa</span>
+            </div>
+            <div class="stat-item">
+              <span class="stat-number">50+</span>
+              <span class="stat-label">Petani Bergabung</span>
+            </div>
+            <div class="stat-item">
+              <span class="stat-number">100%</span>
+              <span class="stat-label">Organik</span>
+            </div>
+          </div>
           <div class="hero-buttons">
-            <a href="/produk" class="btn btn-primary">Lihat Produk</a>
-            <a href="/tanya-ai" class="btn btn-secondary">Tanya AI</a>
+            <a href="/produk" class="btn btn-primary">🌿 Lihat Produk Desa</a>
+            <a href="/tanya-ai" class="btn btn-secondary">🌱 Tanya AI</a>
           </div>
         </div>
       </div>
     </section>
 
+    <!-- Preview Produk -->
     <section class="product-preview" aria-labelledby="preview-title">
       <div class="container">
-        <h2 id="preview-title">🔥 Produk Favorit</h2>
+        <div class="section-header">
+          <h2 id="preview-title">🌾 Produk Unggulan Kopdes</h2>
+          <p class="section-subtitle">Hasil bumi terbaik dari petani desa</p>
+        </div>
         <div class="product-grid">
           <% products.forEach(product => { %>
             <article class="product-card">
               <div class="product-card-content">
+                <span class="product-category"><%= product.category %></span>
                 <h3><%= product.name %></h3>
                 <div class="product-meta">
                   <span class="product-price">Rp <%= product.price.toLocaleString() %></span>
-                  <span class="product-stock">Stok: <%= product.stock %> <%= product.unit %></span>
+                  <span class="product-stock">📦 Stok: <%= product.stock %> <%= product.unit %></span>
                 </div>
                 <a href="/produk/<%= product.id %>" class="btn btn-detail">Lihat Detail</a>
               </div>
@@ -44,6 +66,29 @@
         </div>
         <div class="text-center">
           <a href="/produk" class="btn btn-primary">Lihat Semua Produk →</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- Informasi Kopdes -->
+    <section class="info-section" aria-labelledby="info-title">
+      <div class="container">
+        <div class="info-grid">
+          <div class="info-card">
+            <span class="info-icon">🌾</span>
+            <h3>Hasil Bumi</h3>
+            <p>Produk langsung dari petani dan kebun desa, segar dan berkualitas.</p>
+          </div>
+          <div class="info-card">
+            <span class="info-icon">🤝</span>
+            <h3>Gotong Royong</h3>
+            <p>Dikelola bersama warga desa untuk kesejahteraan bersama.</p>
+          </div>
+          <div class="info-card">
+            <span class="info-icon">🌱</span>
+            <h3>Organik Alami</h3>
+            <p>Tanpa bahan kimia, murni dari alam untuk kesehatan keluarga.</p>
+          </div>
         </div>
       </div>
     </section>

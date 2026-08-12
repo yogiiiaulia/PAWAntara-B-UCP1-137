@@ -2,8 +2,9 @@
   <div class="container">
     <div class="navbar-brand">
       <a href="/" class="brand-link">
-        <span class="brand-icon">🛒</span>
-        <span class="brand-text">Toko Sembako Ariesta</span>
+        <span class="brand-icon">🏡</span>
+        <span class="brand-text">Kopdes Ariesta</span>
+        <span class="brand-sub">Sejahtera Bersama</span>
       </a>
     </div>
 
@@ -21,19 +22,37 @@
     <ul class="nav-menu" id="navMenu" role="menubar">
       <li class="nav-item" role="none">
         <a href="/" class="nav-link <% if (currentPage === 'beranda') { %>active<% } %>" role="menuitem">
-          🏠 Beranda
+          🌾 Beranda
         </a>
       </li>
       <li class="nav-item" role="none">
         <a href="/produk" class="nav-link <% if (currentPage === 'produk') { %>active<% } %>" role="menuitem">
-          📦 Produk
+          🌿 Produk Desa
         </a>
       </li>
       <li class="nav-item" role="none">
         <a href="/tanya-ai" class="nav-link <% if (currentPage === 'tanya-ai') { %>active<% } %>" role="menuitem">
-          🤖 Tanya AI
+          🌱 Tanya AI
         </a>
       </li>
+      <% if (user) { %>
+        <li class="nav-item" role="none">
+          <a href="/dashboard" class="nav-link <% if (currentPage === 'dashboard') { %>active<% } %>" role="menuitem">
+            📊 Dashboard
+          </a>
+        </li>
+        <li class="nav-item" role="none">
+          <a href="/logout" class="nav-link" role="menuitem">
+            🚪 Logout
+          </a>
+        </li>
+      <% } else { %>
+        <li class="nav-item" role="none">
+          <a href="/login" class="nav-link" role="menuitem">
+            🔐 Login
+          </a>
+        </li>
+      <% } %>
     </ul>
   </div>
 </nav>
