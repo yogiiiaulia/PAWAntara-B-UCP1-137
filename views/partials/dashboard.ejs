@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Dashboard - Kopdes Ariesta</title>
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+  <%- include('partials/navbar') %>
+
+  <main class="main-content">
+    <div class="container">
+      <div class="dashboard-header">
+        <h1>📊 Dashboard Admin Kopdes</h1>
+        <p>Kelola produk desa dengan mudah</p>
+      </div>
+
+      <!-- Form Tambah Produk -->
+      <section class="card">
+        <div class="card-header">
+          <h2>🌾 Tambah Produk Baru</h2>
+        </div>
+        <div class="card-body">
+          <form id="addProductForm">
+            <div class="form-row">
+              <div class="form-group">
+                <label for="productName">Nama Produk*</label>
+                <input type="text" id="productName" placeholder="Contoh: Kopi Robusta" required>
+              </div>
+              <div class="form-group">
+                <label for="productCategory">Kategori</label>
+                <select id="productCategory">
+                  <option value="pangan">Pangan</option>
+                  <option value="perkebunan">Perkebunan</option>
+                  <option value="ternak">Peternakan</option>
+                  <option value="olahan">Olahan</option>
+                  <option value="buah">Buah</option>
+                </select>
+              </div>
+            </div>
+            <div class="form-row">
+              <div class="form-group">
+                <label for="productPrice">Harga (Rp)*</label>
+                <input type="number" id="productPrice" placeholder="Contoh: 35000" required>
+              </div>
+              <div class="form-group">
+                <label for="productStock">Stok*</label>
+                <input type="number" id="productStock" placeholder="Contoh: 20" required>
+              </div>
+              <div class="form-group">
+                <label for="productUnit">Satuan</label>
+                <input type="text" id="productUnit" placeholder="kg/botol/papan" value="kg">
+              </div>
+            </div>
+            <div class="form-group">
+              <label for="productDesc">Deskripsi</label>
+              <textarea id="productDesc" rows="2" placeholder="Deskripsi produk..."></textarea>
+            </div>
+            <button type="submit" class="btn btn-primary">➕ Tambah Produk</button>
+            <div id="addMessage" class="message"></div>
+          </form>
+        </div>
+      </section>
+
+      <!-- Daftar Produk -->
+      <section class="card">
+        <div class="card-header">
+          <h2>📦 Daftar Produk Desa</h2>
+        </div>
+        <div class="card-body">
+          <div id="productList" class="product-grid">
+            <!-- Akan diisi oleh JavaScript -->
+          </div>
+        </div>
+      </section>
+    </div>
+  </main>
+
+  <!-- Modal Edit -->
+  <div class="modal" id="editModal">
+    <div class="modal-content">
+      <span class="modal-close" id="closeModal">&times;</span>
+      <h2>✏️ Edit Produk</h2>
+      <input type="hidden" id="editId">
+      <div class="form-group">
+        <label for="editName">Nama Produk</label>
+        <input type="text" id="editName">
+      </div>
+      <div class="form-group">
+        <label for="editCategory">Kategori</label>
+        <select id="editCategory">
+          <option value="pangan">Pangan</option>
+          <option value="perkebunan">Perkebunan</option>
+          <option value="ternak">Peternakan</option>
+          <option value="olahan">Olahan</option>
+          <option value="buah">Buah</option>
+        </select>
+      </div>
+      <div class="form-row">
+        <div class="form-group">
+          <label for="editPrice">Harga</label>
+          <input type="number" id="editPrice">
+        </div>
+        <div class="form-group">
+          <label for="editStock">Stok</label>
+          <input type="number" id="editStock">
+        </div>
+        <div class="form-group">
+          <label for="editUnit">Satuan</label>
+          <input type="text" id="editUnit">
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="editDesc">Deskripsi</label>
+        <textarea id="editDesc" rows="2"></textarea>
+      </div>
+      <button class="btn btn-primary" id="saveEditBtn">💾 Simpan</button>
+      <div id="editMessage" class="message"></div>
+    </div>
+  </div>
+
+  <%- include('partials/footer') %>
+  <script src="/js/dashboard.js"></script>
+</body>
+</html>

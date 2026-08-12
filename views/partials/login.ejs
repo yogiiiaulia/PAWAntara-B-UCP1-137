@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Login - Kopdes Ariesta</title>
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+  <main class="login-page">
+    <div class="container">
+      <div class="login-container">
+        <div class="login-header">
+          <span class="login-icon">🏡</span>
+          <h1>Kopdes Ariesta</h1>
+          <p>Login untuk mengelola produk desa</p>
+        </div>
+
+        <% if (error) { %>
+          <div class="alert alert-danger"><%= error %></div>
+        <% } %>
+
+        <form id="loginForm" class="login-form">
+          <div class="form-group">
+            <label for="username">Username</label>
+            <input type="text" id="username" name="username" placeholder="Masukkan username" required>
+          </div>
+          <div class="form-group">
+            <label for="password">Password</label>
+            <input type="password" id="password" name="password" placeholder="Masukkan password" required>
+          </div>
+          <button type="submit" class="btn btn-primary btn-block">Login</button>
+          <div id="loginError" class="alert alert-danger" style="display:none;"></div>
+        </form>
+
+        <div class="login-footer">
+          <p>👨‍🌾 Admin: <strong>admin</strong> | Password: <strong>kopdes123</strong></p>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <script>
+    document.getElementById('loginForm').addEventListener('submit', async function(e) {
+      e.preventDefault();
+      
+      const username = document.getElementById('username').value.trim();
+      const password = document.getElementById('password').value.trim();
+      const errorDiv = document.getElementById('loginError');
+      
+      errorDiv.style.display = 'none';
+      
+      if (!username || !password) {
+        errorDiv.textContent = 'Username dan password wajib diisi!';
+        errorDiv.style.display = 'block';
+        return;
+      }
+      
+      try {
+        const response = await fetch('/api/login', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ username, password })
+        });
+        
+        const data = await response.json();
+        
+        if (response.ok) {
+          window.location.href = '/dashboard';
+        } else {
+          errorDiv.textContent = data.message || 'Login gagal!';
+          errorDiv.style.display = 'block';
+        }
+      } catch (err) {
+        errorDiv.textContent = 'Terjadi kesalahan koneksi!';
+        errorDiv.style.display = 'block';
+      }
+    });
+  </script>
+</body>
+</html>
